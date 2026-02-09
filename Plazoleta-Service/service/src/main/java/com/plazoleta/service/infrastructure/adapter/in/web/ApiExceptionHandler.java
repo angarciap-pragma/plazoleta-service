@@ -1,6 +1,9 @@
 package com.plazoleta.service.infrastructure.adapter.in.web;
 
 import com.plazoleta.service.domain.exception.InvalidOwnerRoleException;
+import com.plazoleta.service.domain.exception.RestaurantNotFoundException;
+import com.plazoleta.service.domain.exception.UnauthorizedException;
+import com.plazoleta.service.domain.exception.UnauthorizedOwnerException;
 import com.plazoleta.service.infrastructure.adapter.in.web.dto.ErrorResponse;
 import com.plazoleta.service.infrastructure.adapter.in.web.dto.FieldErrorResponse;
 import java.time.OffsetDateTime;
@@ -46,6 +49,36 @@ public class ApiExceptionHandler {
 		return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
 				.body(new ErrorResponse(
 						HttpStatus.BAD_GATEWAY.value(),
+						ex.getMessage(),
+						OffsetDateTime.now(),
+						List.of()));
+	}
+
+	@ExceptionHandler(UnauthorizedException.class)
+	public ResponseEntity<ErrorResponse> handleUnauthorized(UnauthorizedException ex) {
+		return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+				.body(new ErrorResponse(
+						HttpStatus.UNAUTHORIZED.value(),
+						ex.getMessage(),
+						OffsetDateTime.now(),
+						List.of()));
+	}
+
+	@ExceptionHandler(UnauthorizedOwnerException.class)
+	public ResponseEntity<ErrorResponse> handleForbidden(UnauthorizedOwnerException ex) {
+		return ResponseEntity.status(HttpStatus.FORBIDDEN)
+				.body(new ErrorResponse(
+						HttpStatus.FORBIDDEN.value(),
+						ex.getMessage(),
+						OffsetDateTime.now(),
+						List.of()));
+	}
+
+	@ExceptionHandler(RestaurantNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleNotFound(RestaurantNotFoundException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND)
+				.body(new ErrorResponse(
+						HttpStatus.NOT_FOUND.value(),
 						ex.getMessage(),
 						OffsetDateTime.now(),
 						List.of()));

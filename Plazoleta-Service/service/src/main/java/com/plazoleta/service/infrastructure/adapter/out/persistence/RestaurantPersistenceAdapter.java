@@ -25,4 +25,10 @@ public class RestaurantPersistenceAdapter implements RestaurantRepositoryPort {
 		log.info("Restaurant persisted id={} nit={}", saved.getId(), saved.getNit());
 		return restaurantEntityMapper.toDomain(saved);
 	}
+
+	@Override
+	public java.util.Optional<Restaurant> findById(Long id) {
+		return restaurantJpaRepository.findById(id)
+				.map(restaurantEntityMapper::toDomain);
+	}
 }

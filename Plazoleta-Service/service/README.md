@@ -63,6 +63,42 @@ Respuesta 201:
 }
 ```
 
+## Endpoint: crear plato
+
+`POST /platos`
+
+Header requerido:
+
+- `Authorization: Bearer <JWT>` (debe contener autoridad `PROPIETARIO`)
+
+Payload:
+
+```json
+{
+  "name": "Plato 1",
+  "price": 12000,
+  "description": "Descripcion del plato",
+  "urlImage": "http://imagen",
+  "category": "Entrada",
+  "restaurantId": 5
+}
+```
+
+Respuesta 201:
+
+```json
+{
+  "id": 1,
+  "name": "Plato 1",
+  "price": 12000,
+  "description": "Descripcion del plato",
+  "urlImage": "http://imagen",
+  "category": "Entrada",
+  "active": true,
+  "restaurantId": 5
+}
+```
+
 ## Reglas de validacion
 
 - `name`: obligatorio y debe contener al menos una letra (no solo numeros)
@@ -71,6 +107,15 @@ Respuesta 201:
 - `phone`: obligatorio, maximo 13 caracteres, solo numerico y puede iniciar con `+`
 - `urlLogo`: obligatorio
 - `ownerId`: obligatorio
+
+Reglas para platos:
+
+- `name`: obligatorio
+- `price`: obligatorio, entero mayor a 0
+- `description`: obligatorio
+- `urlImage`: obligatorio
+- `category`: obligatorio
+- `restaurantId`: obligatorio
 
 ## Validacion de rol de propietario
 

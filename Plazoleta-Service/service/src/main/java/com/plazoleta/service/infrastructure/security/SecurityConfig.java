@@ -28,6 +28,8 @@ public class SecurityConfig {
 						.requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
 						.requestMatchers(HttpMethod.POST, "/restaurantes")
 						.hasAnyAuthority("ADMIN", "ADMINISTRADOR")
+						.requestMatchers(HttpMethod.POST, "/platos")
+						.hasAnyAuthority("PROPIETARIO")
 						.anyRequest().permitAll())
 				.httpBasic(Customizer.withDefaults())
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
