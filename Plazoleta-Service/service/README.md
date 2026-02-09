@@ -84,6 +84,37 @@ Payload:
 }
 ```
 
+## Endpoint: modificar plato
+
+`PUT /platos/{id}`
+
+Header requerido:
+
+- `Authorization: Bearer <JWT>` (debe contener autoridad `PROPIETARIO`)
+
+Payload:
+
+```json
+{
+  "price": 15000,
+  "description": "Descripcion actualizada"
+}
+```
+
+Respuesta 200:
+
+```json
+{
+  "id": 2,
+  "name": "Plato 1",
+  "price": 15000,
+  "description": "Descripcion actualizada",
+  "urlImage": "http://imagen",
+  "category": "Entrada",
+  "active": true,
+  "restaurantId": 5
+}
+```
 Respuesta 201:
 
 ```json
@@ -116,6 +147,7 @@ Reglas para platos:
 - `urlImage`: obligatorio
 - `category`: obligatorio
 - `restaurantId`: obligatorio
+- En modificacion solo se permite actualizar `price` y `description`
 
 ## Validacion de rol de propietario
 

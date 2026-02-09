@@ -25,4 +25,10 @@ public class DishPersistenceAdapter implements DishRepositoryPort {
 		log.info("Dish persisted id={} restaurantId={}", saved.getId(), saved.getRestaurantId());
 		return dishEntityMapper.toDomain(saved);
 	}
+
+	@Override
+	public java.util.Optional<Dish> findById(Long id) {
+		return dishJpaRepository.findById(id)
+				.map(dishEntityMapper::toDomain);
+	}
 }
