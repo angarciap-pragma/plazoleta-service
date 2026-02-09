@@ -30,6 +30,8 @@ public class SecurityConfig {
 						.hasAnyAuthority("ADMIN", "ADMINISTRADOR")
 						.requestMatchers(HttpMethod.POST, "/platos")
 						.hasAnyAuthority("PROPIETARIO")
+						.requestMatchers(HttpMethod.PUT, "/platos/**")
+						.hasAnyAuthority("PROPIETARIO")
 						.anyRequest().permitAll())
 				.httpBasic(Customizer.withDefaults())
 				.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

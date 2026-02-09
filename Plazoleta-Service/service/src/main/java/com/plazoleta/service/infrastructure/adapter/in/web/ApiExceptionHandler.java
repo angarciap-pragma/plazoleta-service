@@ -1,5 +1,6 @@
 package com.plazoleta.service.infrastructure.adapter.in.web;
 
+import com.plazoleta.service.domain.exception.DishNotFoundException;
 import com.plazoleta.service.domain.exception.InvalidOwnerRoleException;
 import com.plazoleta.service.domain.exception.RestaurantNotFoundException;
 import com.plazoleta.service.domain.exception.UnauthorizedException;
@@ -76,6 +77,16 @@ public class ApiExceptionHandler {
 
 	@ExceptionHandler(RestaurantNotFoundException.class)
 	public ResponseEntity<ErrorResponse> handleNotFound(RestaurantNotFoundException ex) {
+		return ResponseEntity.status(HttpStatus.NOT_FOUND)
+				.body(new ErrorResponse(
+						HttpStatus.NOT_FOUND.value(),
+						ex.getMessage(),
+						OffsetDateTime.now(),
+						List.of()));
+	}
+
+	@ExceptionHandler(DishNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleDishNotFound(DishNotFoundException ex) {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND)
 				.body(new ErrorResponse(
 						HttpStatus.NOT_FOUND.value(),
