@@ -2,18 +2,20 @@ package com.plazoleta.service.infrastructure.adapter.out.persistence.mapper;
 
 import com.plazoleta.service.domain.model.Restaurant;
 import com.plazoleta.service.infrastructure.adapter.out.persistence.entity.RestaurantEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RestaurantEntityMapper {
 
 	public RestaurantEntity toEntity(Restaurant restaurant) {
 		RestaurantEntity entity = new RestaurantEntity();
-		entity.setId(restaurant.getId());
-		entity.setName(restaurant.getName());
-		entity.setNit(restaurant.getNit());
-		entity.setAddress(restaurant.getAddress());
-		entity.setPhone(restaurant.getPhone());
-		entity.setUrlLogo(restaurant.getUrlLogo());
-		entity.setOwnerId(restaurant.getOwnerId());
+		entity.setId(restaurant.id());
+		entity.setName(restaurant.name());
+		entity.setNit(restaurant.nit());
+		entity.setAddress(restaurant.address());
+		entity.setPhone(restaurant.phone());
+		entity.setUrlLogo(restaurant.urlLogo());
+		entity.setOwnerId(restaurant.ownerId());
 		return entity;
 	}
 

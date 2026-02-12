@@ -17,6 +17,18 @@ Propiedades principales en `src/main/resources/application.properties`:
 - `plazoleta.usuarios.base-url`: base URL del microservicio de usuarios
 - `jwt.secret`: secreto para validar JWT
 
+Variables de entorno requeridas en runtime:
+
+- `DB_USERNAME`
+- `DB_PASSWORD`
+- `JWT_SECRET`
+- `USERS_SERVICE_BASE_URL` (opcional, por defecto http://localhost:8081)
+
+## Trazabilidad
+
+- Puedes enviar `X-Request-Id` en cada request.
+- Si no se envia, el servicio genera uno y lo retorna en la respuesta.
+
 ## Ejecutar
 
 ```bash
@@ -109,20 +121,6 @@ Respuesta 200:
   "name": "Plato 1",
   "price": 15000,
   "description": "Descripcion actualizada",
-  "urlImage": "http://imagen",
-  "category": "Entrada",
-  "active": true,
-  "restaurantId": 5
-}
-```
-Respuesta 201:
-
-```json
-{
-  "id": 1,
-  "name": "Plato 1",
-  "price": 12000,
-  "description": "Descripcion del plato",
   "urlImage": "http://imagen",
   "category": "Entrada",
   "active": true,

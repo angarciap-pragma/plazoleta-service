@@ -2,19 +2,21 @@ package com.plazoleta.service.infrastructure.adapter.out.persistence.mapper;
 
 import com.plazoleta.service.domain.model.Dish;
 import com.plazoleta.service.infrastructure.adapter.out.persistence.entity.DishEntity;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DishEntityMapper {
 
 	public DishEntity toEntity(Dish dish) {
 		DishEntity entity = new DishEntity();
-		entity.setId(dish.getId());
-		entity.setName(dish.getName());
-		entity.setPrice(dish.getPrice());
-		entity.setDescription(dish.getDescription());
-		entity.setUrlImage(dish.getUrlImage());
-		entity.setCategory(dish.getCategory());
-		entity.setActive(dish.isActive());
-		entity.setRestaurantId(dish.getRestaurantId());
+		entity.setId(dish.id());
+		entity.setName(dish.name());
+		entity.setPrice(dish.price());
+		entity.setDescription(dish.description());
+		entity.setUrlImage(dish.urlImage());
+		entity.setCategory(dish.category());
+		entity.setActive(dish.active());
+		entity.setRestaurantId(dish.restaurantId());
 		return entity;
 	}
 
